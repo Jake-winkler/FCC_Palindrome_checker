@@ -1,16 +1,17 @@
 const checkButton = document.getElementById("check-btn");
 const inputValue = document.getElementById('text-input');
+const resultSection = document.getElementById('result');
 
 checkButton.addEventListener('click', event => {
     if(inputValue.value === 'input text here'){
-        alert("please Enter Text!!")
-    } else {
-        if(inputValue.value.includes(' ')){
+        alert("Please input a value")
+    } else if (inputValue.value.includes(' ')){
         let str = checkForSpaces(inputValue.value)
             checkForPalindrom(str);
+        } else {
+            checkForPalindrom(inputValue.value);
         }
-        checkForPalindrom(inputValue.value);
-    }
+    
 });
 
 const checkForPalindrom = (input) => {
@@ -21,15 +22,31 @@ const checkForPalindrom = (input) => {
         revArray.push(endString);
     }
     let newWord =  revArray.join('');
-    if (input === newWord){
-        alert('YOU HAVE A PALENDROME!!!')
+    if(input === newWord){
+
+        const newHeader = document.createElement('h3');
+        const newText = document.createTextNode(`${input} is a palindrome`);
+        newHeader.appendChild(newText);
+        resultSection.appendChild(newHeader);
+    }else{ 
+        const newHeader = document.createElement('h3');
+        const newText = document.createTextNode(`${input} is not palindrome`);
+        newHeader.appendChild(newText);
+        resultSection.appendChild(newHeader);
     }
 }
 
 const checkForSpaces = (input) => {
+    let i = 0;
+    let newSTR;
+    while(i < input.length){
     const spaceArray = input.split('');
     let indexOfFirst = input.indexOf(' ');
     spaceArray.splice(indexOfFirst,1);
-    let newSTR = spaceArray.join('');
+    newSTR = spaceArray.join('');
+    i++;
+    console.log(newSTR);
+    }
    return newSTR;
+
 }
