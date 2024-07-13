@@ -14,7 +14,7 @@ checkButton.addEventListener('click', event => {
         }
     
 });
-
+afsd 
 const checkForPalindrom = (input) => {
     const textArray = input.split('');
     const revArray = [];
