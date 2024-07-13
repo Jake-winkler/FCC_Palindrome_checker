@@ -1,11 +1,12 @@
 const checkButton = document.getElementById("check-btn");
 const inputValue = document.getElementById('text-input');
 const resultSection = document.getElementById('result');
+const re = new RegExp('\s')
 
 checkButton.addEventListener('click', event => {
     if(inputValue.value === 'input text here'){
         alert("Please input a value")
-    } else if (inputValue.value.includes(' ')){
+    } else if (inputValue.value.includes(re)){
         let str = checkForSpaces(inputValue.value)
             checkForPalindrom(str);
         } else {
@@ -39,14 +40,16 @@ const checkForPalindrom = (input) => {
 const checkForSpaces = (input) => {
     let i = 0;
     let newSTR;
-    while(i < input.length){
-    const spaceArray = input.split('');
-    let indexOfFirst = input.indexOf(' ');
-    spaceArray.splice(indexOfFirst,1);
-    newSTR = spaceArray.join('');
-    i++;
-    console.log(newSTR);
-    }
+
+    
+    // while(i < input.length){
+    // const spaceArray = input.split('');
+    // let indexOfFirst = input.indexOf(' ');
+    // spaceArray.splice(indexOfFirst,1);
+    // newSTR = spaceArray.join('');
+    // i++;
+    // console.log(newSTR);
+    // }
    return newSTR;
 
 }
