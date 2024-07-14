@@ -1,55 +1,41 @@
 const checkButton = document.getElementById("check-btn");
 const inputValue = document.getElementById('text-input');
 const resultSection = document.getElementById('result');
-const re = new RegExp('\s')
+
 
 checkButton.addEventListener('click', event => {
     if(inputValue.value === 'input text here'){
         alert("Please input a value")
-    } else if (inputValue.value.includes(re)){
-        let str = checkForSpaces(inputValue.value)
+    } else if (inputValue.value.split(/[^0-9a-zA-Z]/g).length - 1 > 0){
+        let str = inputValue.value;
+        str = str.replace(/[^0-9a-zA-Z]/g, '');
             checkForPalindrom(str);
-        } else {
+        }else {
             checkForPalindrom(inputValue.value);
         }
     
 });
 
 const checkForPalindrom = (input) => {
+   let lowerCaseText =  input.toLowerCase();
     const textArray = input.split('');
+    textArray.forEach(function(item, index) { textArray[index] = item.toLowerCase()});
     const revArray = [];
     while(textArray.length > 0){
         let endString = textArray.pop();
         revArray.push(endString);
     }
     let newWord =  revArray.join('');
-    if(input === newWord){
+    if(lowerCaseText === newWord){
 
         const newHeader = document.createElement('h3');
-        const newText = document.createTextNode(`${input} is a palindrome`);
+        const newText = document.createTextNode(`${inputValue.value} is a palindrome`);
         newHeader.appendChild(newText);
         resultSection.appendChild(newHeader);
     }else{ 
         const newHeader = document.createElement('h3');
-        const newText = document.createTextNode(`${input} is not palindrome`);
+        const newText = document.createTextNode(`${inputValue.value} is not palindrome`);
         newHeader.appendChild(newText);
         resultSection.appendChild(newHeader);
     }
-}
-
-const checkForSpaces = (input) => {
-    let i = 0;
-    let newSTR;
-
-    
-    // while(i < input.length){
-    // const spaceArray = input.split('');
-    // let indexOfFirst = input.indexOf(' ');
-    // spaceArray.splice(indexOfFirst,1);
-    // newSTR = spaceArray.join('');
-    // i++;
-    // console.log(newSTR);
-    // }
-   return newSTR;
-
 }
