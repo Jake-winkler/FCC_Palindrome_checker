@@ -27,15 +27,24 @@ const checkForPalindrom = (input) => {
     }
     let newWord =  revArray.join('');
     if(lowerCaseText === newWord){
-
-        const newHeader = document.createElement('h3');
+        let resultsID = document.getElementById('resultsID');
+        if(resultsID != null){
+            resultsID.innerHTML=`${inputValue.value} is a palindrome`
+        } else{
+             const newHeader = document.createElement('h3');
+         newHeader.setAttribute('id','resultsID');
         const newText = document.createTextNode(`${inputValue.value} is a palindrome`);
         newHeader.appendChild(newText);
         resultSection.appendChild(newHeader);
-    }else{ 
+         }
+       }else{ 
+        if(resultsID != null){
+            resultsID.innerHTML = `${inputValue.value} is not palindrome`
+        } else{
         const newHeader = document.createElement('h3');
         const newText = document.createTextNode(`${inputValue.value} is not palindrome`);
         newHeader.appendChild(newText);
         resultSection.appendChild(newHeader);
+        }
     }
 }
