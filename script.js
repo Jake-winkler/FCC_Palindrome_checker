@@ -16,6 +16,21 @@ checkButton.addEventListener('click', () => {
     
     });
 
+    checkButton.addEventListener('keydown', function(e) {
+        if(e.key === "Enter"){
+            if(inputValue.value === 'input text here'){
+                alert("Please input a value")
+            } else if (inputValue.value.split(/[^0-9a-zA-Z]/g).length - 1 > 0){
+                let str = inputValue.value;
+                str = str.replace(/[^0-9a-zA-Z]/g, '');
+                    checkForPalindrom(str);
+                }else {
+                    checkForPalindrom(inputValue.value);
+                }
+        }
+    });
+    
+
 inputValue.addEventListener('keydown', function(e) {
     if(e.key === "Enter"){
         if(inputValue.value === 'input text here'){
