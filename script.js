@@ -3,7 +3,7 @@ const inputValue = document.getElementById('text-input');
 const resultSection = document.getElementById('result');
 
 
-checkButton.addEventListener('click', event => {
+checkButton.addEventListener('click', () => {
     if(inputValue.value === 'input text here'){
         alert("Please input a value")
     } else if (inputValue.value.split(/[^0-9a-zA-Z]/g).length - 1 > 0){
@@ -14,6 +14,20 @@ checkButton.addEventListener('click', event => {
             checkForPalindrom(inputValue.value);
         }
     
+    });
+
+inputValue.addEventListener('keydown', function(e) {
+    if(e.key === "Enter"){
+        if(inputValue.value === 'input text here'){
+            alert("Please input a value")
+        } else if (inputValue.value.split(/[^0-9a-zA-Z]/g).length - 1 > 0){
+            let str = inputValue.value;
+            str = str.replace(/[^0-9a-zA-Z]/g, '');
+                checkForPalindrom(str);
+            }else {
+                checkForPalindrom(inputValue.value);
+            }
+    }
 });
 
 const checkForPalindrom = (input) => {
